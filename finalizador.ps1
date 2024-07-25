@@ -10,4 +10,7 @@ foreach ($profileDirectory in $profileDirectories) {
     Remove-Item -Path $profileDirectory.FullName -Force -Recurse
 }
 
-Remove-Item -Path "C:\Users\$userName\Desktop\*.lnk" -Force
+New-Item -ItemType Directory -Path "$chromeUserDataPath\Default"
+New-Item -ItemType File -Path "$chromeUserDataPath\Default\Preferences" -Value '{"homepage": "https://www.google.com"}'
+
+Remove-Item -Path "C:\Users\$userName\Desktop\Chrome*.lnk" -Force
