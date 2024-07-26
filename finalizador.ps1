@@ -17,9 +17,10 @@ $preferencesValue = '{"homepage": "'+$homePage+'", "startup_urls": ["'+ $homePag
 New-Item -ItemType Directory -Path "$chromeUserDataPath\Default" -Force
 New-Item -ItemType File -Path "$chromeUserDataPath\Default\Preferences" -Value $preferencesValue
 
+$chromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe"  # Substitua por seu caminho do Chrome
 $shortcutTarget = "$chromePath --profile-directory=Default"
 New-Item -ItemType File -Path "$chromeUserDataPath\Default\atalho.lnk" -Force
 (Get-Item "$chromeUserDataPath\Default\atalho.lnk").Shortcut.TargetPath = $shortcutTarget
 Copy-Item "$chromeUserDataPath\Default\atalho.lnk" "C:\Users\$userName\Desktop\Colégio Avicenna.lnk" -Force
- 
+
 Write-Host "Script executado com exito."
