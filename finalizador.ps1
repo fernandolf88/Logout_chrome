@@ -18,18 +18,6 @@ New-Item -ItemType Directory -Path "$chromeUserDataPath\Default" -Force
 New-Item -ItemType File -Path "$chromeUserDataPath\Default\Preferences" -Value $preferencesValue
 
 $chromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
-$shortcutTarget = "$chromePath --profile-directory=Default"
-$shortcutPath = "C:\Users\$userName\atalho.lnk"
 
-$shortcut = Get-Item $shortcutPath
-if ($shortcut.GetTyoe().Name -eq "Shortcut") {
-    $shortcut.TargetPath = $shortcutTarget
-} else {
-    $shell = New-Object -ComObjetct WScript.Shell
-    $shortcut = $shell.CreateShortcut($shortcutPath)
-    $shortcut.TargetPath = $shortcutTarget
-    $shortcut.Save()
-}
-
-Copy-Item $shortcutPath "C:\Users\$userName\Desktop\Colegio Avicenna.lnk"
+Start-Process -FilePath $chromePath -ArgumentList "--profile-directory=Default --$homePage"
 Write-Host "Script executado com exito."
