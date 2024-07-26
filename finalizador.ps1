@@ -12,7 +12,7 @@ foreach ($profileDirectory in $profileDirectories) {
 }
 
 $preferencesValue = '{"homepage": "'+$homePage+'", "startup_urls": ["'+ $homePage +'"]}'
-New-Item -ItemType Directory - Path "$chromeUserDataPath\Default" -Force
+New-Item -ItemType Directory -Path "$chromeUserDataPath\Default" -Force
 New-Item -ItemType File -Path "$chromeUserDataPath\Default\Preferences" -Value $preferencesValue
 
 $shortcutPath = "C:\Users\$userName\Desktop\Chrome Avicenna.lnk"
