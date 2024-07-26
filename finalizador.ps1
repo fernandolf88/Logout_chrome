@@ -13,12 +13,6 @@ foreach ($profileDirectory in $profileDirectories) {
 
 Remove-Item -Path "C:\Users\$userName\Desktop\*.lnk" -Force
 
-$preferencesValue = '{"homepage": "'+$homePage+'", "startup_urls": ["'+ $homePage +'"]}'
-New-Item -ItemType Directory -Path "$chromeUserDataPath\Default" -Force
-New-Item -ItemType File -Path "$chromeUserDataPath\Default\Preferences" -Value $preferencesValue
+Expand-Archive -Path "C:\script\User.zip" -DestinationPath "C:\Users\$userName\AppData\Local\Google\Chrome\"
 
-$chromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
-
-Start-Process -FilePath $chromePath -ArgumentList "--profile-directory=Default --$homePage"
-Get-Process chrome | Stop-Process
 Write-Host "Script executado com exito."
