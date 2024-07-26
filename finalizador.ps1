@@ -18,10 +18,11 @@ $shortcutPath = "C:\Users\$userName\Desktop\Chrome Avicenna.lnk"
 $targetPath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 $arguments = "--profile-directory=Default"
 
-Remove-Item -Path "C:\Users\$userName\Desktop\*Chrome*.lnk" -Force
-Write-Host "Script executado com exito."
+Remove-Item -Path "C:\Users\$userName\Desktop\*.lnk" -Force
 
 [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms") | Out-Null
 $shortcut = New-Object -ComObject WScript.Shell
 $shortcut.CreateShortcut($shortcutPath).TargetPath = $targetPath
 $shortcut.CreateShortcut($shortcutPath).Arguments = $arguments
+
+Write-Host "Script executado com exito."
