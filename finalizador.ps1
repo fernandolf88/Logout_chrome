@@ -18,10 +18,11 @@ Expand-Archive -Path "C:\script\User.zip" -DestinationPath "C:\Users\$userName\A
 
 $form = New-Object System.Windows.Forms.Form
 $form.Text = "Tarefa Finalizada"
-$form.Size = New-Object System.Drawing.Size(300, 100)
+$form.Size = New-Object System.Drawing.Size(500, 100)
 
 $label = New-Object System.Windows.Forms.Label
-$label.Text = "A tarefa foi finalizada com sucesso."
+$label.Text = "A tarefa foi finalizada 
+                com sucesso."
 $label.Location = New-Object System.Drawing.Point(30, 30)
 $form.Controls.Add($label)
 $form.ShowDialog()
