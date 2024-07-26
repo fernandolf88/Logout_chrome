@@ -22,6 +22,6 @@ $form.Size = New-Object System.Drawing.Size(300, 100)
 
 $label = New-Object System.Windows.Forms.Label
 $label.Text = "A tarefa foi finalizada com sucesso."
-$label.Location = New-Object System.Drawing.Point(20, 20)
+$label.Location = New-Object System.Drawing.Point(30, 30)
 $form.Controls.Add($label)
 $form.ShowDialog()
