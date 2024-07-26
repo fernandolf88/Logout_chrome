@@ -20,4 +20,5 @@ New-Item -ItemType File -Path "$chromeUserDataPath\Default\Preferences" -Value $
 $chromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 
 Start-Process -FilePath $chromePath -ArgumentList "--profile-directory=Default --$homePage"
+Get-Process chrome | Stop-Process
 Write-Host "Script executado com exito."
