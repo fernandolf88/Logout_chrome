@@ -11,19 +11,15 @@ foreach ($profileDirectory in $profileDirectories) {
     Remove-Item -Path $profileDirectory.FullName -Force -Recurse
 }
 
+Remove-Item -Path "C:\Users\$userName\Desktop\*.lnk" -Force
+
 $preferencesValue = '{"homepage": "'+$homePage+'", "startup_urls": ["'+ $homePage +'"]}'
 New-Item -ItemType Directory -Path "$chromeUserDataPath\Default" -Force
 New-Item -ItemType File -Path "$chromeUserDataPath\Default\Preferences" -Value $preferencesValue
 
-$shortcutPath = "C:\Users\$userName\Desktop\Chrome Avicenna.lnk"
-$targetPath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
-$arguments = "--profile-directory=Default"
-
-Remove-Item -Path "C:\Users\$userName\Desktop\*.lnk" -Force
-
-[System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms") | Out-Null
-$shortcut = New-Object -ComObject WScript.Shell
-$shortcut.CreateShortcut($shortcutPath).TargetPath = $targetPath
-$shortcut.CreateShortcut($shortcutPath).Arguments = $arguments
+$chromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe"  # Substitua por seu caminho do Chrome
+$shortcutPath = "C:\Users\$userName\Desktop\Colégio Avicenna.lnk"
+$shortcutTarget = "$chromePath --profile-directory=Default"  # Abre o Chrome com o perfil padrão
+$WScript.CreateObject("Wscript.Shell").CreateShortcut($shortcutPath).TargetPath = $shortcutTarget
 
 Write-Host "Script executado com exito."
