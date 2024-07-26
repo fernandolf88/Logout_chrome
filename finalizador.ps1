@@ -21,5 +21,5 @@ $shortcutTarget = "$chromePath --profile-directory=Default"
 New-Item -ItemType File -Path "$chromeUserDataPath\Default\atalho.lnk" -Force
 (Get-Item "$chromeUserDataPath\Default\atalho.lnk").Shortcut.TargetPath = $shortcutTarget
 Copy-Item "$chromeUserDataPath\Default\atalho.lnk" "C:\Users\$userName\Desktop\Colégio Avicenna.lnk" -Force
-
+ 
 Write-Host "Script executado com exito."
