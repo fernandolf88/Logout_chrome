@@ -19,8 +19,19 @@ New-Item -ItemType File -Path "$chromeUserDataPath\Default\Preferences" -Value $
 
 $chromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe"  # Substitua por seu caminho do Chrome
 $shortcutTarget = "$chromePath --profile-directory=Default"
-New-Item -ItemType File -Path "$chromeUserDataPath\Default\atalho.lnk" -Force
-(Get-Item "$chromeUserDataPath\Default\atalho.lnk").Shortcut.TargetPath = $shortcutTarget
-Copy-Item "$chromeUserDataPath\Default\atalho.lnk" "C:\Users\$userName\Desktop\Colégio Avicenna.lnk" -Force
+$shortcutPath = "$chromeUserDataPath\Default\atalho.lnk"
 
+# Verificar se o arquivo é um atalho válido
+$shortcut = Get-Item $shortcutPath
+if ($shortcut.GetType().Name -eq "Shortcut") {
+    $shortcut.TargetPath = $shortcutTarget
+} else {
+    # Criar o atalho corretamente
+    $shell = New-Object -ComObject WScript.Shell
+    $shortcut = $shell.CreateShortcut($shortcutPath)
+    $shortcut.TargetPath = $shortcutTarget
+    $shortcut.Save()
+}
+
+Copy-Item $shortcutPath "C:\Users\$userName\Desktop\Colégio Avicenna.lnk" -Force
 Write-Host "Script executado com exito."
